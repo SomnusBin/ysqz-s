@@ -1,0 +1,46 @@
+<% if(extra) { %>
+&emsp;共<%= total %>页&emsp;
+<% } %>
+
+<% if(page > 1) { %>
+    <a href="javascript:void(0)" data-page="<%= page-1 %>" class="prev">&lt;&lt;</a>
+<% } %>
+<ul class="pagination vat">
+    <% if(page-offset > 1) { %>
+    <li>
+        <a href="javascript:void(0)" data-page="1">1</a>
+    </li>
+    <% if(page-offset != 2) { %>
+    <li>
+        <span style="color: #999999;">...</span>
+    </li>
+    <% } %>
+    <% } %>
+    <% for (var i = page-offset; i <= page+offset; i++) { %>
+        <% if(i > 0 && i <= total) { %>
+            <% if(i === page) { %>
+                <li class="active">
+                    <a><%= i %></a>
+                </li>
+            <% } else { %>
+                <li>
+                    <a href="javascript:void(0)" data-page="<%= i %>"><%= i %></a>
+                </li>
+            <% } %>
+        <% } %>
+    <% } %>
+    <% if(total-offset > page) { %>
+    <li>
+        <span style="color: #999999;">...</span>
+    </li>
+    <% } %>
+</ul>
+<% if(page < total) {%>
+    <a href="javascript:void(0)" data-page="<%= page+1 %>" >&gt;&gt;</a>
+<% } %>
+
+<% if(extra) { %>
+<form class="form-inline dis_inb" role="form">
+&emsp;&emsp;转至&emsp;<input class="num"  type="text" name="page"><button type="submit" class="e_btn e_btn_green sure" >确定</button>
+</form>
+<% } %>

@@ -2,7 +2,6 @@ var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
 var Tips = require('./widget/tips');
-var User = require('./model/user');
 var app = require('base');
 var Env = require('./model/env');
 
@@ -12,19 +11,8 @@ var HOME_PAGE = "";
 app.autoload = function(module, callback) {
     switch(module) {
         case 'home':
-        case 'report':
-            require.ensure('./page/report/controller.js', function(require) {
-                callback(require('./page/report/controller.js'));
-            });
-            break;
-        case 'customer':
-            require.ensure('./page/customer/controller.js', function(require) {
-                callback(require('./page/customer/controller.js'));
-            });
-            break;
-        case 'system':
-            require.ensure('./page/system/controller.js', function(require) {
-                callback(require('./page/system/controller.js'));
+            require.ensure('./page/home/controller.js', function(require) {
+                callback(require('./page/home/controller.js'));
             });
             break;
         default:
@@ -90,52 +78,13 @@ app.loading = function(box) {
 
 var MainView = app.MainView.extend({
     events: {
-        "click .w_xt_left .redmenu a.first": function (e) {
-            var this_a = $(e.currentTarget);
-            if(this_a.hasClass('active')){
-                this_a.removeClass('active');
-            }else{
-                this.$el.find('.w_xt_left .redmenu a.first').removeClass('active');
-                this_a.addClass('active');
-            }
-            return false;
-        },
-        "click .head_nav .j_logout_btn": function (e) {
-            var self = this;
-            app.confirm("确定退出系统吗？", function(){
-                self.logout();
-            });
-            return false;
-        }
+       
     },
     handlerRouter: function() {
-        var controller = app.router.activeController;
-        var action = app.router.activeAction;
-        if(controller == "home"){
-            controller = "report";
-        }
-        var topNav = this.$('.w_xt_left .redmenu>li>a[data-controller="'+controller+'"]');
-        var actionDom = topNav.siblings('ul.second').find('a[data-action="'+action+'"]');
-
-        this.$('.w_xt_left .redmenu>li>a[data-controller]').removeClass('active');
-        this.$('.w_xt_left .redmenu a[data-action]').removeClass('on');
-        if(topNav.size()) {
-            topNav.addClass('active');
-            actionDom.addClass('on');
-        } else {
-            this.$('.w_xt_left .redmenu>li>a[data-controller="'+app.router.defaultController+'"]');
-        }
-    },
-    logout:function () {
-        User.singleton().logout().done(function (data) {
-            window.location.href = HOME_PAGE;
-        })
+        
     },
     initialize: function() {
-        app.router.on('router', this.handlerRouter, this);
-        // 显示昵称
-        $(".j-nick_name").html(User.singleton().get('username'));
-        $(".p_main_view .e_start_loading").remove();
+        
     }
 });
 
@@ -200,26 +149,16 @@ Backbone.ajax = function(request) {
     return promise;
 };
 
-// Backbone.history.start();
-// 获取用户信息
-// User.singleton().fetch({url:Env.inforApi}).done(function(data) {
-//     app.routerMainView = new app.MainView({
-//         el:".p_main_view",
-//     });
+app.routerMainView = new app.MainView();
 
-//     app.router = new app.Router({
-//         mainView: app.routerMainView,
-//         defaultController: 'home',
-//         Controller: {
-//             'home': 'home',
-//             'report': 'report',
-//             'customer': 'customer',
-//             'system': 'system',
-//         }
-//     });
-//     app.mainView = new MainView();
-//     Backbone.history.start();
-// }).fail(function () {
-//     window.location.href = HOME_PAGE;
-// })
+app.router = new app.Router({
+    mainView: app.routerMainView,
+    defaultController: 'home',
+    Controller: {
+        'home': 'home',
+    }
+});
+app.mainView = new MainView();
+
+Backbone.history.start();
 
