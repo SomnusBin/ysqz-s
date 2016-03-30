@@ -1,0 +1,90 @@
+/**
+ * 简单元素，用e_开头
+ */
+.e_arr_r {
+	border-left: 4px solid #fff;
+	border-top: 4px solid transparent;
+	border-right: 0px solid transparent;
+	border-bottom: 4px solid transparent;
+	_border-color:tomato; /*For IE6-*/
+	_border-left-color: #fff;
+	_filter:chroma(color=tomato);/*For IE6-*/
+	vertical-align: middle;
+	.display_inline_block();
+	font-size: 0;
+	line-height: 0;
+}
+.e_btn{
+	text-align: center;
+	font-size: 16px;
+   	padding: 6px 0;
+   	border-radius: 3px;
+   	border: 1px solid transparent;
+   	// .box_shadow(0 3px 5px 0px rgba(10, 2, 4, 0.3));
+	outline: none;
+	&.e_btn_block{
+		display: block;
+    	width: 100%;
+	}
+	&.e_btn_green{
+		color: #fff;
+		border-color: #55c350;
+		border: 1px solid #55c350;
+		background:#338e2e;
+		background:linear-gradient(bottom, #319f2c, #53bd4e);
+		background:-moz-linear-gradient(bottom, #319f2c, #53bd4e);
+		background:-webkit-linear-gradient(bottom, #319f2c, #53bd4e);
+		background:-o-linear-gradient(bottom, #319f2c, #53bd4e);
+		&:focus{
+			border-color: #55c350;
+		}
+		&:active,&:hover{
+			background:#338e2e;
+			border-color: #55c350;
+		}
+	}
+	&.e_btn_gray{
+		color: #fff;
+		border-color: #cdcdcd;
+		border: 1px solid #cdcdcd;
+		background:#b4b2b2;
+		background:linear-gradient(bottom, #b4b2b2, #cccccc);
+		background:-moz-linear-gradient(bottom, #b4b2b2, #cccccc);
+		background:-webkit-linear-gradient(bottom, #b4b2b2, #cccccc);
+		background:-o-linear-gradient(bottom, #b4b2b2, #cccccc);
+		&:focus{
+			border-color: #cdcdcd;
+		}
+		&:active,&:hover{
+			background:#b4b2b2;
+			border-color: #cdcdcd;
+		}
+	}
+}
+.e_noresult{
+	font-size: 24px;
+    color: #BBB;
+    padding: 25px 0;
+}
+.e_loading{
+	font-size: 45px;
+    text-align: center;
+    color: #45B040;
+    padding: 20px 0;
+}
+.e_start_loading{
+	width: 100px;
+    height: 100px;
+    background: #000;
+    background: rgba(0,0,0,.6);
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    font-size: 48px;
+    text-align: center;
+    line-height: 100px;
+    border-radius: 10px;
+}

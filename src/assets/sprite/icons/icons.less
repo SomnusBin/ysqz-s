@@ -1,0 +1,100 @@
+@accoun: -123px, -27px, 19px, 19px;
+@data_table: 0px, -80px, 24px, 22px;
+@get_adver: -32px, -80px, 20px, 20px;
+@home: -123px, -80px, 18px, 16px;
+@lock: 0px, -110px, 16px, 17px;
+@login_lock: -60px, -80px, 20px, 20px;
+@login_user: -88px, -80px, 20px, 20px;
+@power: -24px, -110px, 15px, 16px;
+@realname: -123px, 0px, 19px, 19px;
+@tab_bb_g: 0px, 0px, 33px, 32px;
+@tab_bb_w: -82px, 0px, 33px, 32px;
+@tab_gg_g: -82px, -40px, 33px, 32px;
+@tab_gg_w: -41px, -40px, 33px, 32px;
+@tab_xx_g: 0px, -40px, 33px, 32px;
+@tab_xx_w: -41px, 0px, 33px, 32px;
+@tel: -123px, -54px, 18px, 18px;
+@tel_a: -70px, -110px, 14px, 14px;
+@tell: -47px, -110px, 15px, 14px;
+
+.sprite-width(@sprite) {
+  width: extract(@sprite, 3);
+}
+
+.sprite-height(@sprite) {
+  height: extract(@sprite, 4);
+}
+
+.sprite-position(@sprite) {
+  @sprite-offset-x: extract(@sprite, 1);
+  @sprite-offset-y: extract(@sprite, 2);
+  background-position: @sprite-offset-x  @sprite-offset-y;
+}
+
+.sprite(@sprite) {
+  .sprite-position(@sprite);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: inline-block;
+  .sprite-width(@sprite);
+  .sprite-height(@sprite);
+}
+
+.icon {
+  background-image: url('../images/icons.png');
+}
+
+.icon_accoun {
+  .sprite(@accoun);
+}
+.icon_data_table {
+  .sprite(@data_table);
+}
+.icon_get_adver {
+  .sprite(@get_adver);
+}
+.icon_home {
+  .sprite(@home);
+}
+.icon_lock {
+  .sprite(@lock);
+}
+.icon_login_lock {
+  .sprite(@login_lock);
+}
+.icon_login_user {
+  .sprite(@login_user);
+}
+.icon_power {
+  .sprite(@power);
+}
+.icon_realname {
+  .sprite(@realname);
+}
+.icon_tab_bb_g {
+  .sprite(@tab_bb_g);
+}
+.icon_tab_bb_w {
+  .sprite(@tab_bb_w);
+}
+.icon_tab_gg_g {
+  .sprite(@tab_gg_g);
+}
+.icon_tab_gg_w {
+  .sprite(@tab_gg_w);
+}
+.icon_tab_xx_g {
+  .sprite(@tab_xx_g);
+}
+.icon_tab_xx_w {
+  .sprite(@tab_xx_w);
+}
+.icon_tel {
+  .sprite(@tel);
+}
+.icon_tel_a {
+  .sprite(@tel_a);
+}
+.icon_tell {
+  .sprite(@tell);
+}
