@@ -9,6 +9,7 @@ var undef;
 var IndexAction = app.ActionView.extend({
 	template: template,
 	events: {
+        
 	},
     initialize: function() {
     	this.$el.html(this.template);
