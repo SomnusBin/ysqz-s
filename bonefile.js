@@ -130,7 +130,7 @@ bone.task('scp', function() {
     client.scp(static, {
         host: '123.56.156.37',
         username: 'root',
-        password: 'Niurui2015',
+        password: '',
         path: '/a/domains/dev6.kezhanwang.cn/kz/static'
     }, function(err) {
         if(err) {
@@ -143,7 +143,7 @@ bone.task('scp', function() {
     client.scp(pages, {
         host: '123.56.156.37',
         username: 'root',
-        password: 'Niurui2015',
+        password: '',
         path: '/a/domains/dev6.kezhanwang.cn/kz/pages/clubadmin/pages'
     }, function(err) {
         if(err) {
