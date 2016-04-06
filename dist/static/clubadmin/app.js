@@ -1,4 +1,4 @@
-webpackJsonp([0,1],[
+webpackJsonp([0,2],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -6,9 +6,8 @@ webpackJsonp([0,1],[
 	var _ = __webpack_require__(2);
 	var Backbone = __webpack_require__(3);
 	var Tips = __webpack_require__(4);
-	var User = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./model/user\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	var app = __webpack_require__(5);
-	var Env = __webpack_require__(7);
+	var Env = __webpack_require__(8);
 
 	// 定义一些常量
 	var HOME_PAGE = "";
@@ -16,20 +15,9 @@ webpackJsonp([0,1],[
 	app.autoload = function(module, callback) {
 	    switch(module) {
 	        case 'home':
-	        case 'report':
-	            !/* require.ensure */(function(require) {
-	                callback(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./page/report/controller.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
-	            }(__webpack_require__));
-	            break;
-	        case 'customer':
-	            !/* require.ensure */(function(require) {
-	                callback(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./page/customer/controller.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
-	            }(__webpack_require__));
-	            break;
-	        case 'system':
-	            !/* require.ensure */(function(require) {
-	                callback(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./page/system/controller.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
-	            }(__webpack_require__));
+	            __webpack_require__.e/* nsure */(1, function(require) {
+	                callback(__webpack_require__(9));
+	            });
 	            break;
 	        default:
 	            break;
@@ -94,52 +82,13 @@ webpackJsonp([0,1],[
 
 	var MainView = app.MainView.extend({
 	    events: {
-	        "click .w_xt_left .redmenu a.first": function (e) {
-	            var this_a = $(e.currentTarget);
-	            if(this_a.hasClass('active')){
-	                this_a.removeClass('active');
-	            }else{
-	                this.$el.find('.w_xt_left .redmenu a.first').removeClass('active');
-	                this_a.addClass('active');
-	            }
-	            return false;
-	        },
-	        "click .head_nav .j_logout_btn": function (e) {
-	            var self = this;
-	            app.confirm("确定退出系统吗？", function(){
-	                self.logout();
-	            });
-	            return false;
-	        }
+	       
 	    },
 	    handlerRouter: function() {
-	        var controller = app.router.activeController;
-	        var action = app.router.activeAction;
-	        if(controller == "home"){
-	            controller = "report";
-	        }
-	        var topNav = this.$('.w_xt_left .redmenu>li>a[data-controller="'+controller+'"]');
-	        var actionDom = topNav.siblings('ul.second').find('a[data-action="'+action+'"]');
-
-	        this.$('.w_xt_left .redmenu>li>a[data-controller]').removeClass('active');
-	        this.$('.w_xt_left .redmenu a[data-action]').removeClass('on');
-	        if(topNav.size()) {
-	            topNav.addClass('active');
-	            actionDom.addClass('on');
-	        } else {
-	            this.$('.w_xt_left .redmenu>li>a[data-controller="'+app.router.defaultController+'"]');
-	        }
-	    },
-	    logout:function () {
-	        User.singleton().logout().done(function (data) {
-	            window.location.href = HOME_PAGE;
-	        })
+	        
 	    },
 	    initialize: function() {
-	        app.router.on('router', this.handlerRouter, this);
-	        // 显示昵称
-	        $(".j-nick_name").html(User.singleton().get('username'));
-	        $(".p_main_view .e_start_loading").remove();
+	        
 	    }
 	});
 
@@ -204,28 +153,18 @@ webpackJsonp([0,1],[
 	    return promise;
 	};
 
-	// Backbone.history.start();
-	// 获取用户信息
-	// User.singleton().fetch({url:Env.inforApi}).done(function(data) {
-	//     app.routerMainView = new app.MainView({
-	//         el:".p_main_view",
-	//     });
+	app.routerMainView = new app.MainView();
 
-	//     app.router = new app.Router({
-	//         mainView: app.routerMainView,
-	//         defaultController: 'home',
-	//         Controller: {
-	//             'home': 'home',
-	//             'report': 'report',
-	//             'customer': 'customer',
-	//             'system': 'system',
-	//         }
-	//     });
-	//     app.mainView = new MainView();
-	//     Backbone.history.start();
-	// }).fail(function () {
-	//     window.location.href = HOME_PAGE;
-	// })
+	app.router = new app.Router({
+	    mainView: app.routerMainView,
+	    defaultController: 'home',
+	    Controller: {
+	        'home': 'home',
+	    }
+	});
+	app.mainView = new MainView();
+
+	Backbone.history.start();
 
 
 
@@ -13575,7 +13514,7 @@ webpackJsonp([0,1],[
 
 	var Tips = Cover.PosCenterBase.extend({
 		name: 'widget.tips',
-		template: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"html?attrs=false!../template/widget/tips.html\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
+		template: __webpack_require__(7),
 		mask: true,
 		events: {
 			'click .s_done': function() {
@@ -14301,6 +14240,12 @@ webpackJsonp([0,1],[
 
 /***/ },
 /* 7 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"co_ly_err\">\n\t<div class=\"co_ly_ctx\">\n\t\t<i class=\"fa\"></i>\n\t\t<div class=\"co_ly_ctx_body\"></div>\n\t</div>\n\t<div class=\"tx_c\">\n\t\t<a href=\"javascript:void(0)\" class=\"co_ly_btn e_btn e_btn_green s_done\">确定</a>\n\t\t<a href=\"javascript:void(0)\" class=\"co_ly_btn e_btn e_btn_gray ml10 s_cancel\" style=\"display:none;\">取消</a>\n\t</div>\n</div>";
+
+/***/ },
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
